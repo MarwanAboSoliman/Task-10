@@ -20,6 +20,11 @@ app.get("/users", async (req, res) => {
 app.get("/users/:user_id", async (req, res) => {
   // get user by id from database
   const user = await db.getById("users", req.params.user_id);
+  if (!author) {
+      return res.status(404).json({
+        error: "Author Not Found ❌",
+      });
+    }
   //send as json
   res.json({
     data: user,
